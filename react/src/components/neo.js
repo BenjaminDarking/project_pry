@@ -23,8 +23,9 @@ export class Neo extends Component {
 
       let config = {
         container_id: "viz",
-        server_user: "",
-        server_password: "",
+        server_url: "bolt://localhost:7687/",
+        server_user: "neo4j",
+        server_password: "dansbugs",
         labels: this.state.neo_labels,
         relationships: this.state.neo_realtionships,
         initial_cypher: "MATCH (n) RETURN n"
@@ -33,6 +34,7 @@ export class Neo extends Component {
       console.log(config.relationships)
 
       var viz = new NeoVis(config);
+      console.log(viz)
       console.log("Testing")
       viz.render();
       console.log("Testing 2")
@@ -45,9 +47,9 @@ export class Neo extends Component {
 
   render() {
     return (
-      <div>
-        <div id="viz"></div>
-      </div>
+
+      <div id="viz"></div>
+
     );
   }
 }
