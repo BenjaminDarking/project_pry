@@ -16,24 +16,26 @@ export class Neo extends Component {
     }
 
     axios.get('http://localhost:5000/', configs).then(response => {
-      console.log(response.data)
       this.setState({
         neo_labels: response.data.label,
         neo_realtionships: response.data.relationships,
       })
-      console.log(this.state.neo_labels)
-      console.log(this.state.neo_relationships)
+
       let config = {
         container_id: "viz",
+        server_user: "",
+        server_password: "",
         labels: this.state.neo_labels,
         relationships: this.state.neo_realtionships,
-        initial_cypher: "MATCH (p) RETURN p"
+        initial_cypher: "MATCH (n) RETURN n"
       };
       console.log(config.labels)
       console.log(config.relationships)
 
       var viz = new NeoVis(config);
+      console.log("Testing")
       viz.render();
+      console.log("Testing 2")
     })
   }
 
