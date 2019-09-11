@@ -26,9 +26,13 @@ export class Neo extends Component {
         server_url: "bolt://localhost:7687/",
         server_user: "neo4j",
         server_password: "dansbugs",
-        labels: this.state.neo_labels,
-        relationships: this.state.neo_realtionships,
-        initial_cypher: "MATCH (n) RETURN n"
+        labels: {
+          "User": { name: "screen_name" }
+        },
+        relationships: {
+          TWEETED: ""
+        },
+        initial_cypher: "MATCH p=(:User)-[:TWEETED]->(:Source) RETURN p"
       };
       console.log(config.labels)
       console.log(config.relationships)
