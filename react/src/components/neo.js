@@ -1,23 +1,44 @@
 import React, { Component } from "react";
-import NeoVis from "../../node_modules/neovis.js";
+import NeoVis from 'neovis.js';
+const axios = require('axios');
 
 export class Neo extends Component {
-  draw() {
-    var config = {
-      container_id: "viz",
-      server_url: "bolt://localhost:7687",
-      server_user: "",
-      server_password: "",
-      labels: {
-        User: {}
-      },
-      initial_cypher: "MATCH (p) RETURN p"
-    };
-    var viz = new NeoVis(config);
-    viz.render();
+  state = {
+    neo_labels: [],
+    neo_relationships: []
   }
+
+
+
+  fetchData() {
+    let configs = {
+      "Access-Control-Allow-Origin": "*"
+    }
+
+    axios.get('http://localhost:5000/', configs).then(response => {
+      console.log(response.data)
+      this.setState({
+        neo_labels: response.data.label,
+        neo_realtionships: response.data.relationships,
+      })
+      console.log(this.state.neo_labels)
+      console.log(this.state.neo_relationships)
+      let config = {
+        container_id: "viz",
+        labels: this.state.neo_labels,
+        relationships: this.state.neo_realtionships,
+        initial_cypher: "MATCH (p) RETURN p"
+      };
+      console.log(config.labels)
+      console.log(config.relationships)
+
+      var viz = new NeoVis(config);
+      viz.render();
+    })
+  }
+
   componentDidMount() {
-    this.draw();
+    this.fetchData();
   }
 
   render() {
