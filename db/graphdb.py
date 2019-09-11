@@ -130,7 +130,10 @@ def template_function(labels_data, relationships_data):
     }
 
 headlines = retrieve_headlines()
-tweeted_headlines = twitter_search_tweets_by_headlines(headlines)
+headlines_search = []
+for headline in headlines:
+    headlines_search.append(headline['title'])
+tweeted_headlines = twitter_search_tweets_by_headlines(headlines_search)
 users = twitter_search_users_by_headlines(tweeted_headlines)
 # print(users[0])
 for user in users:
