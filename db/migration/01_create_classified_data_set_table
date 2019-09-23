@@ -1,0 +1,1 @@
+CREATE TABLE classified_ds (user_id numeric(30,0) PRIMARY KEY, user_name varchar(200), feature_vector numeric [], classification integer);

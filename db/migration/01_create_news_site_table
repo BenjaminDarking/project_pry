@@ -1,1 +1,0 @@
-CREATE TABLE news_sites (id serial PRIMARY KEY, related_account_name varchar(50), related_account_id varchar(80), url varchar(250));

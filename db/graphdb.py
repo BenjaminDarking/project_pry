@@ -2,16 +2,21 @@ from neo4j import GraphDatabase
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), os.path.pardir))
-import credentials
-from db.redis_cache import retrieve_headlines, retrieve_users
-from external_api.twitter_api import run_twitter_query
+#import credentials
+#from db.redis_cache import retrieve_headlines, retrieve_users
+#from external_api.twitter_api import run_twitter_query
 
 GRAPHENEDB_BOLT_USER = os.environ.get('GRAPHENEDB_BOLT_USER')
 GRAPHENEDB_BOLT_PASSWORD = os.environ.get('GRAPHENEDB_BOLT_PASSWORD')
 GRAPHENEDB_BOLT_URL = os.environ.get('GRAPHENEDB_BOLT_URL')
-
-driver = GraphDatabase.driver(
-    GRAPHENEDB_BOLT_URL, auth=(GRAPHENEDB_BOLT_USER, GRAPHENEDB_BOLT_PASSWORD))
+#try:
+#  driver = GraphDatabase.driver(
+#    GRAPHENEDB_BOLT_URL, auth=(GRAPHENEDB_BOLT_USER, GRAPHENEDB_BOLT_PASSWORD))
+#  session = driver.session()
+#  print('Created session')
+#except Exception as e:
+#  print('Failed to connect to DB {}'.format(e))
+#
 
 ## ---------------- ADDING USERS TO THE DB ----------------
 # As we only have four methods by which a user should enter
@@ -19,7 +24,7 @@ driver = GraphDatabase.driver(
 # below for easy reading, although we've included a wrapping
 # function for simple use throughout the application.
 
-def store_user(source, user):
+def store_user(user):
     function = {
         'headline': add_user_node_source_headline(user),
         'text': add_user_node_source_text(user),

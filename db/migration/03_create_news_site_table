@@ -1,0 +1,1 @@
+CREATE TABLE news_sites (id serial PRIMARY KEY, related_user_id numeric(30,0), related_user_name varchar(200), url varchar(300));

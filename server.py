@@ -1,13 +1,11 @@
 import json
 from flask import Flask, Response
-from apscheduler.schedulers.background import BackgroundScheduler
+#from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 from external_api.twitter_api import run_twitter_query
 from external_api.news_api import get_headlines
 from user_classification import classify_users
-#import ssl
-#ssl.match_hostname = lambda cert, hostname: True
-#import ssl                                                                                                                                                   
-#ssl.match_hostname = lambda cert, hostname: hostname == cert['subjectAltName'][0][1]
+#import credentials
 
 def bot_search():
   print("Scheduler is alive!")
@@ -15,13 +13,14 @@ def bot_search():
   print(headlines)
   users = run_twitter_query(headlines)
   print(users)
-  classify_users(users,['tweets_per_day_ratio', 'bot_bio','hours_per_day','timeline_hashtags','retweets_ratio','fake_news'])
+  classify_users(users,['tweets_per_day_ratio', 'bot_bio','hours_per_day','timeline_hashtags','retweets_ratio','fake_news'],('knn',3))
 
 
 
 app = Flask(__name__)
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(bot_search,'interval',minutes=1)
+#sched = BackgroundScheduler(daemon=True)
+sched = BlockingScheduler()
+sched.add_job(bot_search,'interval',minutes=55)
 sched.start()
 
 
@@ -46,9 +45,8 @@ def dummy_node():
       }
     )
   res = Response(node)
-  res.headers['Access-Control-Allow-Origin'] = '*'
   res.headers['Content-Type'] = 'application/json' 
-  print(node)
+  #print(node)
   return node
 
 if __name__ == '__main__':

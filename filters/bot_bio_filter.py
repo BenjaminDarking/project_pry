@@ -1,8 +1,3 @@
-#import sys
-#import os
-#sys.path.insert(0, os.path.join(os.path.dirname(__file__), os.path.pardir))
-#from db.redis_cache import retrieve_users
-#
 def bot_bio_filter(user):
   bot = ['iamabot', 'imabot', 'justabot']
 
