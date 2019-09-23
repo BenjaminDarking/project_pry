@@ -3,7 +3,7 @@ import os
 import sys
 import json
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), os.path.pardir))
-import credentials
+#import credentials
 
 try:
 

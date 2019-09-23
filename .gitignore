@@ -2,7 +2,8 @@ credentials.py
 __pycache__/
 dump.rdb
 .ipynb_checkpoints/
-data_set/
+data_set/*.txt
+data_set/*.json
 react/
 tests/
 utility_scripts/

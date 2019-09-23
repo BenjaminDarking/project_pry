@@ -5,6 +5,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from external_api.twitter_api import run_twitter_query
 from external_api.news_api import get_headlines
 from user_classification import classify_users
+#import credentials
 
 def bot_search():
   print("Scheduler is alive!")
