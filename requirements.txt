@@ -1,0 +1,8 @@
+Flask==1.0.2
+APScheduler==3.6.1
+gunicorn
+newsapi-python==0.2.5
+python-twitter==3.5
+psycopg2-binary
+bs4
+neo4j

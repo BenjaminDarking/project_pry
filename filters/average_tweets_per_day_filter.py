@@ -2,8 +2,7 @@ import datetime
 import os
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), os.path.pardir))
-from utility import convert_timestamp_to_datetime
-#from db.redis_cache import retrieve_users
+from filters.utility import convert_timestamp_to_datetime
 
 NO_OF_TWEETS_PER_DAY_THRESHOLD = 200
 
